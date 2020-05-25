@@ -1,0 +1,19 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:48:12 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Mon May 25 14:43:05 2020
+# Process ID: 14347
+# Current directory: /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Vivado/project_1
+# Command line: vivado -mode tcl
+# Log file: /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Vivado/project_1/vivado.log
+# Journal file: /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Vivado/project_1/vivado.jou
+#-----------------------------------------------------------
+launch_simulation
+open_project project_1.xpr 
+launch_simulation
+open_wave_config /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Vivado/project_1/testbench_behav.wcfg
+source testbench.tcl
+ls
+close_simulation
+close_sim
