@@ -2,46 +2,19 @@
 # Vivado v2019.2.1 (64-bit)
 # SW Build 2729669 on Thu Dec  5 04:48:12 MST 2019
 # IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
-# Start of session at: Mon May 25 15:48:31 2020
-# Process ID: 17127
+# Start of session at: Tue May 26 12:09:45 2020
+# Process ID: 31522
 # Current directory: /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches
-# Command line: vivado
+# Command line: vivado -mode tcl
 # Log file: /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/vivado.log
 # Journal file: /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/vivado.jou
 #-----------------------------------------------------------
-start_gui
-create_project Photonic_switches . -part xc7k70tfbv676-1
-add_files -norecurse {/home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/downwardCounter.v /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/upwardCounter.v}
-update_compile_order -fileset sources_1
-update_compile_order -fileset sources_1
-set_property SOURCE_SET sources_1 [get_filesets sim_1]
-add_files -fileset sim_1 -norecurse /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/testbench.v
-update_compile_order -fileset sim_1
-launch_simulation
+open_project Photonic_switches.xpr 
+open_sim 
+launch_simulation 
+open_wave_config /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/testbench_behav.wcfg
+open_wave_config /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/testbench_behav_parametrized.wcfg
 source testbench.tcl
-update_compile_order -fileset sim_1
-run all
-close_sim
-launch_simulation
-source testbench.tcl
-close_sim
-launch_simulation
-source testbench.tcl
-close_sim
-set_property -name {xsim.simulate.runtime} -value {50ns} -objects [get_filesets sim_1]
-launch_simulation
-source testbench.tcl
-set_property -name {xsim.simulate.runtime} -value {500ns} -objects [get_filesets sim_1]
-close_sim
-launch_simulation
-source testbench.tcl
-close_sim
-launch_simulation
-source testbench.tcl
-close_sim
-launch_simulation
-source testbench.tcl
-save_wave_config {/home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/testbench_behav.wcfg}
-add_files -fileset sim_1 -norecurse /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/testbench_behav.wcfg
-set_property xsim.view /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/testbench_behav.wcfg [get_filesets sim_1]
+open_wave_config testbench_behav_parametrized.wcfg 
+open_wave_config testbench_behav.wcfg
 close_sim

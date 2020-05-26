@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:48:12 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Tue May 26 11:58:28 2020
+# Process ID: 30474
+# Current directory: /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches
+# Command line: vivado
+# Log file: /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/vivado.log
+# Journal file: /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/Photonic_switches.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+open_wave_config /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/testbench_behav.wcfg
+source testbench.tcl
+create_wave_config; add_wave /; set_property needs_save false [current_wave_config]
+save_wave_config {/home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/testbench_behav_parametrized.wcfg}
+add_files -fileset sim_1 -norecurse /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/testbench_behav_parametrized.wcfg
+set_property xsim.view {/home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/testbench_behav.wcfg /home/jordanhong/Documents/MPI/MPI-Halle-electronics/Photonic_switches/testbench_behav_parametrized.wcfg} [get_filesets sim_1]
+open_wave_config -help
+exec ls
+open_wave_config testbench_parametrized.wcfg
+open_wave_config
+open_wave_config testbench_behav_parametrized.wcfg
+close_sim
