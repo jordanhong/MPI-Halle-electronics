@@ -1,4 +1,6 @@
-// Simple WIDTH_A bit divider 
+// General divider with two parameters: width of dividend (A) and width of divisor (B)
+// The inputs are clock, A, and B. The output is Q (quotient), and R (remainder) and done (signals when divide operation is done).
+
 module general_divider #(
                         parameter WIDTH_A=4,
                         parameter WIDTH_B=4
@@ -11,14 +13,25 @@ module general_divider #(
                         output reg done
     );
 
+  // ============== Algorithm  ==================== //
+  // for a n-bit dividend A
+  // for i=0:n-1 (at each clk cycle) do
+  //     leftshift R||A; //left shift MSB of A into R
+  //     if (R>=B) then
+  //         Q[i-1] = 1;
+  //         R = R - B;
+  //     else Q[i] = 0;
+  //     endif
+  // endfor
+  // ============================================== //
+  
 
     // Declare Parameters
-    //parameter WIDTH_A = 4;
-    //parameter WIDTH_B = 4;
     parameter n = 2*WIDTH_A;
 
     // Declare storing reg for R-A concat
     reg [(n-1):0] ra;
+    // declare counter
     reg [(WIDTH_A-1):0] c;
         
 
@@ -36,7 +49,7 @@ module general_divider #(
       
             if (c<WIDTH_A) begin
                 c<=c+1;
-                // if (R>=B), then R = R-b, and store q into the lower end of ra;
+              // if (R>=B after shiting), then R = R-b, and store Q into the lower end of ra;
                 if ( ra[ (WIDTH_A-1) +:WIDTH_A] >= B )  ra <= ( (ra<<1) - { B, {WIDTH_A{1'b0}} } ) | ( { {(n-1){1'b0}}, 1'b1} );
                 else ra <= (ra<<1) | ({n{1'b0}}); // the or operation is redundant, just in case
             end
