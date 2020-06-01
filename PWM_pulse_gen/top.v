@@ -16,8 +16,8 @@ module top(
     downwardCounter #(4) counterB (.clk(clkB), .reset(loadB), .en(1'b1), .limit(B_val), .Q(cB)); 
     
     //Instantiate comparators
-    comparator comparatorA (.in_x (cA), .in_y (4'd0), .comp(reset) );
-    comparator comparatorB (.in_x (cB), .in_y (4'd0), .comp(set) );
+    comparator comparatorA (.clk(clkZ), .in_x (cA), .in_y (4'd0), .comp(reset) );
+    comparator comparatorB (.clk(clkZ), .in_x (cB), .in_y (4'd0), .comp(set) );
 
     // Instantiate RS flip flop
     rsFF pwm_gen (.S(set), .R(reset), .out(signal) );
