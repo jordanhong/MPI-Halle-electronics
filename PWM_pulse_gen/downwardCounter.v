@@ -8,7 +8,7 @@ module downwardCounter #( parameter WIDTH = 1)
                     );
 
 
-    initial Q = 0;
+    //assign Q = limit;
 
     always @(posedge clk)begin
         
