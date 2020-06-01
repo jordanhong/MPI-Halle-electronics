@@ -4,7 +4,8 @@ module testbench ();
     reg clk, en, reset;
     parameter T = 10;
     wire Temp, pwmF;
-    wire [4:0] count25, count8;
+//    wire [4:0] count25, count8;
+//    wire r1_condition, r2_condition;
 
 
     initial begin
@@ -22,7 +23,7 @@ module testbench ();
     always #(T/2) clk = ~clk;
 
 
-    top myTop ( clk, reset, en, Temp, pwmF, count25, count8);
+    top myTop ( .clk(clk), .reset(reset), .en(en), .temp(Temp), .pwm_freq(pwmF));
     
     
     
