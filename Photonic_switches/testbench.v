@@ -1,45 +1,37 @@
 `timescale 1 ns / 100 ps
+module testbench ();
 
-module testbench();
-
-//    parameter T = 10;
-//    reg clk, reset, en;
-//    reg [3:0] limit = 10; //Initialize limit to be 10.
-//    wire [3:0] q_up, q_down;
-
-//    initial begin
-//        clk = 0; // initialize clk from zero
-//        reset = 0;// active high reset
-//        en = 0; // active high enable 
-
-//        #(T*3/2) en = 1;
-//        #(T*5/2) reset = 1;
-//        #(T*6/2) reset = 0;
-//        #(T*9/2) en = 0;
-//        #(T*10/2) en =1;
-//    end
-
-//    // configure clk
-//    always #(T/2) clk = ~clk;
+    reg clk, en, reset;
+    parameter T = 10;
+    wire Temp, pwmF;
+    wire [4:0] count25, count8;
 
 
-//    // instantiate module 
-
-//    upwardCounter#(4) C0 (.clk (clk), .reset(reset), .en(en), .limit(limit), .Q(q_up));
-//    downwardCounter#(4) D0 (.clk (clk), .reset(reset), .en(en), .limit(limit), .Q(q_down));
-
-
-
-
-    reg [3:0] A= 4'b1110;
-    reg [3:0] B= 4'b1001;
-    wire [3:0] Q, R;
-    
-    
-    simple_divider ( A, B, Q, R);
-
-
+    initial begin
+        clk = 0;
+        reset = 0;
+        en = 1;
         
+//        #(10*T/2) en = 0;
+//        #(3*T/2)  en = 1;
+//        # (3*T/2) reset = 1;
+//        # (4*T/2) reset = 0;
+        end
+        
+        
+    always #(T/2) clk = ~clk;
 
-                
+
+    top myTop ( clk, reset, en, Temp, pwmF, count25, count8);
+    
+    
+    
+//===================== Debugging use only, work example=====================
+   
+//    wire R1_condition;
+//    wire [4:0] c1;
+//    assign R1_condition = (c1==5'd24);
+//    upwardCounter #(5) Counter25 (clk, reset, en, 5'd24, c1);
+//    receiver R1 (clk, reset, R1_condition, Temp);
+
 endmodule
