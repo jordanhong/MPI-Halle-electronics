@@ -8,12 +8,13 @@ module downwardCounter #( parameter WIDTH = 1)
                     );
 
 
-    //assign Q = limit;
 
-    always @(posedge clk)begin
-        
-        if (reset || (en && (Q==0)) ) Q<= limit;
-        else if (en) Q <= Q-1;
+    always @(posedge clk, reset)begin
+        // remove rollover      
+        if (reset) Q<= limit;
+        else if (clk&en) begin
+            if (Q!=0) Q <= Q-1;
+        end
     end
 
 endmodule
