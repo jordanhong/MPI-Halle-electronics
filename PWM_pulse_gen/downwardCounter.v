@@ -9,7 +9,7 @@ module downwardCounter #( parameter WIDTH = 1)
 
 
 
-    always @(posedge clk, reset)begin
+    always @(posedge clk, posedge reset)begin
         // remove rollover      
         if (reset) Q<= limit;
         else if (clk&en) begin
