@@ -1,6 +1,6 @@
 `timescale 1 us / 1 ns
 module testbench ();
-
+    //wire clkCore, clkZ, clka, clkB;
     reg clkCore, clkZ, clkA, clkB;
     reg [3:0] A_val, B_val;
     wire load;
@@ -16,10 +16,10 @@ module testbench ();
     initial begin
         clkCore = 0;
         clkZ = 1;
-        clkA = 0;
-        clkB = 0;
-        A_val = 4'd15;
-        B_val = 4'd2;
+        clkA = 1;
+        clkB = 1;
+        A_val = 4'd3;
+        B_val = 4'd15;
     end
         
     
@@ -29,7 +29,7 @@ module testbench ();
     always #(Tb/2) clkB = ~clkB;
  
 
-    
+    //clock_generator clock_gen (.T_core(T_core), .Ta(Ta), .Tb(Tb), .Tz(Tz),.clkCore(clkCore), .clkA(clkA), .clkB(clkB), .clkZ(clkZ));
     top myTop (.clkZ(clkZ), .clkCore(clkCore), .load(load), .clkA (clkA), .clkB(clkB), .A_val(A_val), .B_val(B_val),.set(Set), .reset(Reset), .signal (Output) , .cA(counterA), .cB(counterB) );
     
     
