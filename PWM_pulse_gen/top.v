@@ -1,8 +1,8 @@
 module top(
     input clkZ, clkA,clkB,clkCore,
-    input [3:0] A_val, B_val,
+    input [6:0] A_val, B_val,
     output set, reset, signal,
-    output [3:0] cA, cB,
+    output [6:0] cA, cB,
     output load
     
 );
@@ -17,12 +17,12 @@ module top(
     
     
     // Instantiate counters
-    downwardCounter #(4) counterA (.clk(clkA), .reset(load), .en(1'b1), .limit(A_val), .Q(cA)); 
-    downwardCounter #(4) counterB (.clk(clkB), .reset(load), .en(1'b1), .limit(B_val), .Q(cB)); 
+    downwardCounter #(7) counterA (.clk(clkA), .reset(load), .en(1'b1), .limit(A_val), .Q(cA)); 
+    downwardCounter #(7) counterB (.clk(clkB), .reset(load), .en(1'b1), .limit(B_val), .Q(cB)); 
     
     //Instantiate comparators
-    comparator comparatorA (.counter_clk(clkA), .core_clk(clkCore), .in_x (cA), .in_y (4'd0), .comp(reset));
-    comparator comparatorB (.counter_clk(clkB), .core_clk(clkCore), .in_x (cB), .in_y (4'd0), .comp(set));
+    comparator comparatorA (.counter_clk(clkA), .core_clk(clkCore), .in_x (cA), .in_y (7'd0), .comp(reset));
+    comparator comparatorB (.counter_clk(clkB), .core_clk(clkCore), .in_x (cB), .in_y (7'd0), .comp(set));
  
 
     // Instantiate RS flip flop
