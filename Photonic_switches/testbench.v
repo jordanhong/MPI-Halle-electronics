@@ -4,6 +4,9 @@ module testbench ();
     reg clk, en, reset;
     parameter T = 10;
     wire Temp, pwmF;
+    wire en_8MHz, en_1MHz;
+    wire [4:0] c1, c2;
+
 //    wire [4:0] count25, count8;
 //    wire r1_condition, r2_condition;
 
@@ -13,19 +16,20 @@ module testbench ();
         reset = 0;
         en = 1;
         
-//        #(10*T/2) en = 0;
-//        #(3*T/2)  en = 1;
-//        # (3*T/2) reset = 1;
-//        # (4*T/2) reset = 0;
+        
+        #(10*T/2) en = 0;
+        #(3*T/2)  en = 1;
+        # (39*T/2) reset = 1;
+        # (3*T/2) reset = 0;
         end
         
         
     always #(T/2) clk = ~clk;
 
 
-    top myTop ( .clk(clk), .reset(reset), .en(en), .temp(Temp), .pwm_freq(pwmF));
+    top myTop ( .clk(clk), .reset(reset), .en(en), .en_8MHz(en_8MHz), .en_1MHz(en_1MHz), .temp(Temp), .pwm_freq(pwmF), .c1(c1), .c2(c2));
     
-    
+
     
 //===================== Debugging use only, work example=====================
    
