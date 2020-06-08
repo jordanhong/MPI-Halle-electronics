@@ -12,7 +12,7 @@ module top(
     //wire [3:0] cA, cB;
     
     // Load data 
-    toggle T (.clk(clkCore),.condition(clkZ) ,.en(load));
+    toggle T (.clk(clkCore), .reset(1'b0), .condition(clkZ) ,.en(load));
     
     
     
