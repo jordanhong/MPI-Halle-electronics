@@ -13,7 +13,7 @@ module receiver(
 // outputs signal that reverses itself from last clock cycle
 
 
-    toggle T1 (clk, reset, enable_condition, en);
+    toggle T1 (.clk(clk), .reset(reset), .condition(enable_condition), .en(en));
     
     always @ (posedge clk) begin
         if (reset) signal <= 0;  // active high, synchronous reset

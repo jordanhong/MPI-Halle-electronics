@@ -18,15 +18,15 @@ module top(
     
 
     // Instantiate toggle to enable 8Counter
-    toggle T2 (clk, reset, R1_condition,counter8_en);  
+    toggle T2 (.clk(clk), .reset(reset), .condition(R1_condition),.en(counter8_en));  
 
     // Instantiate two counters 25 and 8
-    upwardCounter #(5) Counter25 (clk, reset, en, 5'd24, c1);
-    upwardCounter #(5) Counter8 (clk, reset, counter8_en, 5'd7, c2);
+    upwardCounter #(5) Counter25 (.clk(clk), .reset(reset), .en(en), .limit(5'd24), .Q(c1));
+    upwardCounter #(5) Counter8 (.clk(clk), .reset(reset), .en(counter8_en), .limit(5'd7), .Q(c2));
 
     // Instantiate receivers
-    receiver R1 (clk, reset, R1_condition, temp);
-    receiver R2 (clk, reset, R2_condition, pwm_freq);
+    receiver R1 (.clk(clk), .reset(reset), .enable_condition(R1_condition), .signal(temp));
+    receiver R2 (.clk(clk), .reset(reset), .enable_condition(R2_condition), .signal(pwm_freq));
 
 
 endmodule
