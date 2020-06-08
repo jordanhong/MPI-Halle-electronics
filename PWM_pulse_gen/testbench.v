@@ -4,10 +4,10 @@ module testbench ();
     reg clkCore, clkZ, clkA, clkB;
     reg [6:0] A_val, B_val;
     wire load;
-    parameter Tz = 1000;
+    parameter Tz = 50;
     parameter T_core = 5.0;
-    parameter Ta = 12.5;
-    parameter Tb = 12.35;
+    parameter Ta = 5.0;
+    parameter Tb = 4;
 
     wire Set, Reset, Output;
     wire [6:0] counterA, counterB;
@@ -19,7 +19,7 @@ module testbench ();
         clkA = 1;
         clkB = 1;
         A_val = 7'd2;
-        B_val = 7'd15;
+        B_val = 7'd2;
     end
         
     
