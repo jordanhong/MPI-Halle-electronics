@@ -11,7 +11,7 @@ module top(
     // output cA and cB
     //wire [3:0] cA, cB;
     
-    // Load data 
+    // Load data on coreClock edge when enable is high (here enable is ClkZ)
     toggle T (.clk(clkCore), .reset(1'b0), .condition(clkZ) ,.en(load));
     
     
