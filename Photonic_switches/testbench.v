@@ -1,33 +1,58 @@
 `timescale 1 ns / 100 ps
 module testbench ();
 
-    reg clk, en, reset;
+    reg clkCore, en, reset;
+    reg clkA, clkB;
     parameter T = 10;
-    wire Temp, pwmF;
+    wire Temp;
     wire en_8MHz, en_1MHz;
     wire [4:0] c1, c2;
 
-//    wire [4:0] count25, count8;
-//    wire r1_condition, r2_condition;
+    wire [6:0] A_val, B_val;
+    wire PWMreset, PWMset, signal;
+    wire [6:0] cA, cB;
+    wire load;
+
+    assign A_val [6:0] = 7'd2;
+    assign B_val [6:0] = 7'd15;
+    
+    
+    parameter T_core = 5.0;                                 
+    parameter Ta = 12.5;                                 
+    parameter Tb = 12.35;
+    
 
 
     initial begin
-        clk = 0;
+        clkCore = 0;
+        clkA = 1;
+        clkB = 1;
         reset = 0;
         en = 1;
         
-        
-        #(10*T/2) en = 0;
-        #(3*T/2)  en = 1;
-        # (39*T/2) reset = 1;
-        # (3*T/2) reset = 0;
+//        #(10*T/2) en = 0;
+//        #(3*T/2)  en = 1;
+//        # (39*T/2) reset = 1;
+//        # (3*T/2) reset = 0;
         end
         
         
-    always #(T/2) clk = ~clk;
+    always #(T_core/2) clkCore = ~clkCore;                                 
+    always #(Ta/2) clkA = ~clkA;
+    always #(Tb/2) clkB = ~clkB; 
 
 
-    top myTop ( .clk(clk), .reset(reset), .en(en), .en_8MHz(en_8MHz), .en_1MHz(en_1MHz), .temp(Temp), .pwm_freq(pwmF), .c1(c1), .c2(c2));
+    top myTop ( .clk(clkCore), .reset(reset), .en(en), 
+                .clkA(clkA), .clkB(clkB),
+                .A_val(A_val), .B_val(B_val), 
+                .PWMreset(PWMreset), .PWMset(PWMset), .signal(signal),
+                .cA(cA), .cB(cB),
+
+                .temp(Temp),
+                .c1(c1), .c2(c2),
+                .en_8MHz(en_8MHz), .en_1MHz(en_1MHz),
+                .load(load)
+                );
     
 
     
