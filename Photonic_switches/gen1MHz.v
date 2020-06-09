@@ -1,5 +1,5 @@
 module gen1MHz(
-    input clk, reset, 
+    input clk, reset,en, 
     input [4:0] c1, c1_limit,
     input en_8MHz,
     output en_1MHz,
@@ -8,16 +8,11 @@ module gen1MHz(
     // wire [4:0] c2;
     // wire [4:0] c2_limit;
     assign c2_limit = 5'd7;
-    assign en_1MHz = (c1==c1_limit) && (c2==c2_limit);
+    assign en_1MHz = en && (c1==c1_limit) && (c2==c2_limit);
     
    
-    wire counter8_en;
 
-    // Instantiate toggle to enable 8Counter
-    //toggle T2 (.clk(clk), .reset(reset), .condition(en_8MHz),.en(counter8_en)); 
-    assign  counter8_en = en_8MHz;
-
-    upwardCounter #(5) Counter8 (.clk(clk), .reset(reset), .en(counter8_en), .limit(c2_limit), .Q(c2));
+    upwardCounter #(5) Counter8 (.clk(clk), .reset(reset), .en(en && en_8MHz), .limit(c2_limit), .Q(c2));
     
 
 endmodule
