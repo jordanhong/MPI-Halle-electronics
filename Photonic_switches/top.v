@@ -24,9 +24,9 @@ module top(
     // Instantiate receivers
     receiver R1 (.clk(clk), .reset(reset), .enable_condition(en_8MHz), .signal(temp));
 
-    // Replace receiver R2 with actual PWM 
-    // receiver R2 (.clk(clk), .reset(reset), .enable_condition(en_1MHz), .signal(pwm_freq));
-
+    // Decode W to A and B
+    decoder D0 (.clk(clk), .W(W), .A(A_val), .B(B-val), .done(en))  
+    // Generate PWM based on A and B values
     gen_PWM P0 (.en(en),
                 .clkZ(en_1MHz), .clkA(clkA), .clkB(clkB), .clkCore(clk),
                 .A_val(A_val), .B_val(B_val), .PWMset(PWMset), .PWMreset(PWMreset), .signal(signal), 
