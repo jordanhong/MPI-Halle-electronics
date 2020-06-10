@@ -12,12 +12,23 @@ module testbench();
     wire DONE_gen;
     //wire DONE_sim;
     reg clk;
-    
-    initial clk = 0;
-    
+    reg reset;
+    wire [(2*wA-1):0] RA; 
+
+
+    initial begin
+        {reset, clk} = 2'b0;
+        #(21*T/2) reset = 1;
+        #(T/2) reset = 0;
+    end 
+     
     always #(T/2) clk = ~clk;
     
-    general_divider #(.WIDTH_A(wA), .WIDTH_B(wB)) SD (clk, A, B, Q_gen, R_gen, DONE_gen);
+    general_divider #(.WIDTH_A(wA), .WIDTH_B(wB)) SD (.clk(clk),.reset(reset), 
+                                                      .A(A), .B(B),
+                                                      .Q(Q_gen), .R(R_gen), 
+                                                      .done(DONE_gen), .ra(RA)
+                                                  );
     //simple_divider SSD (clk, A, B, Q_sim, R_sim, DONE_sim);
 
 

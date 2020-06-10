@@ -5,12 +5,14 @@ module general_divider #(
                         parameter WIDTH_A=4,
                         parameter WIDTH_B=4
                     ) (
-                        input clk, 
+                        input clk,reset, 
                         input [(WIDTH_A-1):0] A,
                         input [(WIDTH_B-1):0] B,
                         output [(WIDTH_A-1):0] Q, 
                         output [(WIDTH_B-1):0] R,
-                        output reg done
+                        output reg done,
+                        output reg [(2*WIDTH_A-1):0] ra
+
     );
 
   // ============== Algorithm  ==================== //
@@ -30,7 +32,7 @@ module general_divider #(
     parameter n = 2*WIDTH_A;
 
     // Declare storing reg for R-A concat
-    reg [(n-1):0] ra;
+    // reg [(n-1):0] ra;
     // declare counter
     reg [(WIDTH_A-1):0] c;
         
@@ -46,7 +48,13 @@ module general_divider #(
     assign R = ra[WIDTH_A+:WIDTH_B];
         
     always @ (posedge clk) begin
-            if (!done) begin      
+            if (reset) begin
+                c <= 0;
+                done <= 0;
+                ra <= {{WIDTH_A{1'b0}}, A};
+            end
+
+            else if (!done) begin      
             // if (c<WIDTH_A) begin
                 c<=c+1;
               // if (R>=B after shiting), then R = R-b, and store Q into the lower end of ra;
