@@ -46,18 +46,18 @@ module general_divider #(
     assign R = ra[WIDTH_A+:WIDTH_B];
         
     always @ (posedge clk) begin
-      
-            if (c<WIDTH_A) begin
+            if (!done) begin      
+            // if (c<WIDTH_A) begin
                 c<=c+1;
               // if (R>=B after shiting), then R = R-b, and store Q into the lower end of ra;
                 if ( ra[ (WIDTH_A-1) +:WIDTH_A] >= B )  ra <= ( (ra<<1) - { B, {WIDTH_A{1'b0}} } ) | ( { {(n-1){1'b0}}, 1'b1} );
                 else ra <= (ra<<1) | ({n{1'b0}}); // the or operation is redundant, just in case
-            end
+            // end
             
-            else done <= 1;
-        end
+                if (c== (WIDTH_A-1) ) done <= 1;
+            end
 
-
+    end
 
         
         
