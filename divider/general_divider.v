@@ -54,7 +54,8 @@ module general_divider #(
                 ra <= {{WIDTH_A{1'b0}}, A};
             end
 
-            else if (!done) begin      
+            else
+                if (!done) begin      
             // if (c<WIDTH_A) begin
                 c<=c+1;
               // if (R>=B after shiting), then R = R-b, and store Q into the lower end of ra;
