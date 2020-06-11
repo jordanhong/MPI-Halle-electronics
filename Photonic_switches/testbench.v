@@ -28,10 +28,10 @@ module testbench ();
         reset = 0;
         en = 1;
         
-        #(349*T_core) en = 0;
-        #(30*T_core/2)  en = 1;
-        #(39*T_core/2) reset = 1;
-        #(3*T_core/2) reset = 0;
+//        #(349*T_core) en = 0;
+//        #(30*T_core/2)  en = 1;
+//        #(39*T_core/2) reset = 1;
+//        #(3*T_core/2) reset = 0;
         end
         
         
