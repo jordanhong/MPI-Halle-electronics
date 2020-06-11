@@ -11,8 +11,8 @@ module testbench ();
     wire PWMreset, PWMset, signal;
     wire [6:0] cA, cB;
 
-    assign A_val [6:0] = 7'd2;
-    assign B_val [6:0] = 7'd15;
+    assign A_val [6:0] = 7'd79;
+    assign B_val [6:0] = 7'd80;
     
     
     parameter T_core = 5.0;                                 

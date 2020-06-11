@@ -18,8 +18,8 @@ module testbench ();
         clkZ = 1;
         clkA = 1;
         clkB = 1;
-        A_val = 7'd2;
-        B_val = 7'd15;
+        A_val = 7'd79;
+        B_val = 7'd80;
     end
         
     
