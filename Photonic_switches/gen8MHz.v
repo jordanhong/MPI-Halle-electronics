@@ -6,7 +6,8 @@ module gen8MHz(
     // wire [4:0] c1;
     // wire [4:0] c1_limit;
     assign c1_limit = 5'd24; 
-    assign en_8MHz = (c1==c1_limit);
+    // assign en_8MHz = (c1==c1_limit);
+    assign en_8MHz = (c1==0);
 
     
     upwardCounter #(5) Counter25 (.clk(clk), .reset(reset), .en(en), .limit(c1_limit), .Q(c1));
