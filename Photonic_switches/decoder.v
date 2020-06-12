@@ -10,8 +10,8 @@ module decoder(
     //      2) If there is change in W, set load to high at rising clock edge
     //      3) output load(reset), and done(enable for PWMgen)
 
-
-    wire [6:0] qA, qB, modA, modB;
+    wire [12:0] qA, qB;
+    wire [6:0] modA, modB;
     assign modA [6:0] = 7'd80;
     assign modB [6:0] = 7'd81;
     wire doneA, doneB;
