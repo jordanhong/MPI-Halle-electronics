@@ -6,7 +6,7 @@ module testbench ();
     wire en_8MHz, en_1MHz;
     wire [4:0] c1, c2;
     
-    reg [12:0] W = 13'd6479;
+    reg [12:0] W = 13'd6401;
     wire [6:0] A_val, B_val;
     wire En;
     wire PWMreset, PWMset, signal;
@@ -15,11 +15,11 @@ module testbench ();
      
     parameter T_core = 5.0;                                 
     // Testing frequency for A(4MHz) and B(5MHz) 
-    // parameter Ta = 250;                                 
-    // parameter Tb = 200;
+    parameter Ta = 250;                                 
+    parameter Tb = 200;
 
-    parameter Ta = 12.5;
-    parameter Tb = 10; // somehow generating 81 Mhz doesn't work. Using 100 MHz instead   
+    // parameter Ta = 12.5;
+    // parameter Tb = 10; // somehow generating 81 Mhz doesn't work. Using 100 MHz instead   
 
 
     initial begin
