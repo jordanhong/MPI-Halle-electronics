@@ -5,9 +5,7 @@ module top(
     input PWMreset, PWMset, signal,
     input [6:0] cA, cB,
 
-    output temp,
-    output [4:0] c1,c2,
-    output en_8MHz, en_1MHz,
+    output [4:0] c1,c2, output en_8MHz, en_1MHz,
     output [6:0] A_val, B_val,
     output En
 );
@@ -23,8 +21,6 @@ module top(
 
     // Core functions 
     
-    // Instantiate receivers
-    receiver R1 (.clk(clk), .reset(reset), .enable_condition(en_8MHz), .signal(temp));
 
     // Decode W to A and B
     decoder D0 (.clk(clk), .W(W), .A(A_val), .B(B_val), .done(En));

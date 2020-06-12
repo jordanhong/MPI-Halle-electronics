@@ -8,7 +8,7 @@ module gen1MHz(
     // wire [4:0] c2;
     // wire [4:0] c2_limit;
     assign c2_limit = 5'd7;
-    assign en_1MHz = en && (c1==c1_limit) && (c2==c2_limit);
+    assign en_1MHz = en && (c1==0) && (c2==0);
     
    
 
