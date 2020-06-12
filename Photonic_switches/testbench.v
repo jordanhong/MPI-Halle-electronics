@@ -1,4 +1,4 @@
-`timescale 1 ns / 100 ps
+`timescale 1 ps / 100 fs
 module testbench ();
 
     reg clkCore, en, reset;
@@ -12,14 +12,25 @@ module testbench ();
     wire PWMreset, PWMset, signal;
     wire [6:0] cA, cB;
    
-     
-    parameter T_core = 5.0;                                 
-    // Testing frequency for A(4MHz) and B(5MHz) 
-    parameter Ta = 250;                                 
-    parameter Tb = 200;
+    // Parameters in ns 
+//    parameter T_core = 5.0;                                 
+//    // Testing frequency for A(4MHz) and B(5MHz) 
+//    // parameter Ta = 250;                                 
+//    // parameter Tb = 200;
+//
+//    parameter Ta = 12.5;
+//    parameter Tb = 10; // somehow generating 81 Mhz doesn't work. Using 100 MHz instead   
 
-    // parameter Ta = 12.5;
-    // parameter Tb = 10; // somehow generating 81 Mhz doesn't work. Using 100 MHz instead   
+//  Parameters in ps
+    parameter T_core = 5000;                                 
+    // Testing frequency for A(4MHz) and B(5MHz) 
+    // parameter Ta = 250;                                 
+    // parameter Tb = 200;
+
+    parameter Ta = 12500;
+    parameter Tb = 12346; // somehow generating 81 Mhz doesn't work. Using 100 MHz instead   
+
+
 
 
     initial begin
