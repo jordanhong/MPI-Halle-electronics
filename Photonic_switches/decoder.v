@@ -1,5 +1,6 @@
 module decoder(
     input clk,
+    input reset,
     input [12:0] W,
     output [6:0] A, B,
     output done
