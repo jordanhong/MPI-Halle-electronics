@@ -7,7 +7,6 @@ module upwardCounter #( parameter WIDTH = 1)
                         output reg [WIDTH-1 :0] Q
                     );
 
-    initial Q = 0;
     always @(posedge clk)begin
     
         if (reset || (en && (Q==limit)) ) Q<=0;
