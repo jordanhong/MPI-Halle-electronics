@@ -6,10 +6,12 @@ module testbench ();
     wire en_8MHz, en_1MHz;
     wire [4:0] c1, c2;
     
-    reg [12:0] W = 13'd6401;
+    reg [12:0] W = 13'd0002;
     wire [6:0] A_val, B_val;
     wire En;
-    wire PWMreset, PWMset, signal;
+    wire enS, enR;
+    wire PWMreset, PWMset, signal, signal_b;
+    wire latch;
     wire [6:0] cA, cB;
    
 
@@ -20,9 +22,9 @@ module testbench ();
     // parameter Tb = 200000;
 
     parameter Ta = 12500;
-    parameter Tb = 12346; // somehow generating 81 Mhz doesn't work. Using 100 MHz instead   
+    parameter Tb = 12346;   
 
-
+    assign latch = ~signal & ~signal_b; 
 
 
     initial begin
@@ -49,13 +51,14 @@ module testbench ();
     top myTop ( .clk(clkCore), .reset(reset), .en(en), 
                 .clkA(clkA), .clkB(clkB),
                 .W(W),
-                .PWMreset(PWMreset), .PWMset(PWMset), .signal(signal),
+                .PWMreset(PWMreset), .PWMset(PWMset), .signal(signal), .signal_b(signal_b),
                 .cA(cA), .cB(cB),
 
                 .c1(c1), .c2(c2),
                 .en_8MHz(en_8MHz), .en_1MHz(en_1MHz),
                 .A_val(A_val), .B_val(B_val), 
-                .En(En)
+                .En(En),
+                .enS(enS), .enR(enR)
                 );
     
 
