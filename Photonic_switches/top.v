@@ -2,12 +2,13 @@ module top(
     input clk, reset, en,
     input clkA, clkB,
     input [12:0] W,
-    input PWMreset, PWMset, signal,
+    input PWMreset, PWMset, signal, signal_b,
     input [6:0] cA, cB,
 
     output [4:0] c1,c2, output en_8MHz, en_1MHz,
     output [6:0] A_val, B_val,
-    output En
+    output En,
+    output enS, enR
 );
 
 
@@ -23,14 +24,16 @@ module top(
     
 
     // Decode W to A and B
-    decoder D0 (.clk(clk), .W(W), .A(A_val), .B(B_val), .done(En));
+    // reset triggers the decode process using divider to get A and B from W
+    decoder D0 (.clk(clk), .reset(reset), .W(W), .A(A_val), .B(B_val), .done(En));
       
     // Generate PWM based on A and B values
     gen_PWM P0 (.en(en && En),
                 .clkZ(en_1MHz), .clkA(clkA), .clkB(clkB), .clkCore(clk),
-                .A_val(A_val), .B_val(B_val), .PWMset(PWMset), .PWMreset(PWMreset), .signal(signal), 
+                .A_val(A_val), .B_val(B_val), .PWMset(PWMset), .PWMreset(PWMreset), .signal(signal), .signal_b(signal_b), 
                 .reset(reset),
-                .cA(cA), .cB(cB)
+                .cA(cA), .cB(cB),
+                .enS(enS), .enR(enR)
                 );
 
 

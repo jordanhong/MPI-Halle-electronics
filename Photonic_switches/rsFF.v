@@ -1,19 +1,14 @@
 module rsFF (
     input S, R,
-    input reset,
-    output reg out
+    output  out,
+    output out_b
 );
+    // Normally having both S and R is illegal, since simultaneous falling
+    // will trigger racing effect (metastable)
+    // However, here S and R signals 
+   // wire out_b; 
+   rsLatch r0 (.en(1), .S(S), .R(R), .Q(out), .Qb(out_b) );
 
-//    always @ (*) begin
-//        if (S) out = 1;
-//        if (R) out = 0;
-//    end
-   
     
-    always @ (posedge S) if (!R) out = 1;
-    always @ (posedge R) out = 0;
-
-    always @ (reset) if (reset) out = 0;
-
 endmodule
         
