@@ -1,4 +1,4 @@
-`timescale 1 ps / 100 fs
+`timescale 1 ps / 1 fs
 module testbench ();
 
     reg clkCore, en, reset;
@@ -22,7 +22,7 @@ module testbench ();
     // parameter Tb = 200000;
 
     parameter Ta = 12500;
-    parameter Tb = 12346;   
+    parameter Tb = 12345.679;   
 
     assign latch = ~signal & ~signal_b; 
 
