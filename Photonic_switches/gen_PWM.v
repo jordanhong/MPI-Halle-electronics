@@ -13,8 +13,8 @@ module gen_PWM(
     downwardCounter #(7) counterB (.clk(clkB), .load(clkZ), .en(en), .limit(B_val), .Q(cB)); 
     
     //Instantiate comparators
-    comparator comparatorA (.counter_clk(clkA),.in_x (cA), .in_y (7'd0), .reset(reset), .comp(PWMreset));
-    comparator comparatorB (.counter_clk(clkB),.in_x (cB), .in_y (7'd0), .reset(reset), .comp(PWMset));
+    comparator comparatorA (.counter_clk(clkA),.in_x (cA), .in_y (7'd0),.en(en), .reset(reset), .comp(PWMreset));
+    comparator comparatorB (.counter_clk(clkB),.in_x (cB), .in_y (7'd0),.en(en), .reset(reset), .comp(PWMset));
  
 
     // Instantiate RS flip flop

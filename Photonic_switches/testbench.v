@@ -9,11 +9,10 @@ module testbench ();
     reg [12:0] W = 13'd0002;
     wire [6:0] A_val, B_val;
     wire En;
-    wire enS, enR;
     wire PWMreset, PWMset, signal, signal_b;
     wire latch;
     wire [6:0] cA, cB;
-   
+    reg load;   
 
 //  Parameters in ps
     parameter T_core = 5000;                                 
@@ -33,12 +32,19 @@ module testbench ();
         clkB = 1;
         reset = 1;
         en = 1;
-        
-        #(T_core/2) reset = 0;
+        load = 1;
+
+        #(T_core/2) begin
+            reset = 0;
+            load = 0;
+        end
         //#(349*T_core) en = 0;
         //#(30*T_core/2)  en = 1;
-        //#(39*T_core/2) reset = 1;
-        //#(3*T_core/2) reset = 0;
+        #(749*T_core/2) begin
+            reset = 1;
+            W = 13'd6401;
+        end
+        #(3*T_core/2) reset = 0;
 
         end
         
@@ -48,7 +54,7 @@ module testbench ();
     always #(Tb/2) clkB = ~clkB; 
 
 
-    top myTop ( .clk(clkCore), .reset(reset), .en(en), 
+    top myTop ( .clk(clkCore), .reset(reset), .en(en), .load(load),
                 .clkA(clkA), .clkB(clkB),
                 .W(W),
                 .PWMreset(PWMreset), .PWMset(PWMset), .signal(signal), .signal_b(signal_b),

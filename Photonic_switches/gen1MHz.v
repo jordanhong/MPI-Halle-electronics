@@ -1,5 +1,5 @@
 module gen1MHz(
-    input clk, reset,en, 
+    input clk, load, en, 
     input [4:0] c1, c1_limit,
     input en_8MHz,
     output en_1MHz,
@@ -12,7 +12,7 @@ module gen1MHz(
     
    
 
-    upwardCounter #(5) Counter8 (.clk(clk), .reset(reset), .en(en && en_8MHz), .limit(c2_limit), .Q(c2));
+    upwardCounter #(5) Counter8 (.clk(clk), .reset(load), .en(en && en_8MHz), .limit(c2_limit), .Q(c2));
     
 
 endmodule
