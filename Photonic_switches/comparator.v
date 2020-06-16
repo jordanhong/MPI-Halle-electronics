@@ -6,16 +6,21 @@ module comparator (
     output reg comp
 );
 
-    // Intialize
-    // initial comp = 0;
-    
+    // reg to store delayed signal (value from last clock cycle)
+    reg in_x_d;
+
     always @(*)begin 
-        // cannot use sync (clk) here, since that would trigger it every clock
-        // at reset or high last cycle, toggle to low
-        if (reset ) comp = 0;
-        else if (en && (in_x == in_y)) comp = 1;
+        // need asynchrnous update here; otherwise the signal will delay by
+        // a clock cycle (simultaneously updated)
+        if (reset) comp = 0;
+
+        // check if the input x changed in this clock cycle
+        else if (en && (in_x == in_y) && !(in_x_d==in_x) ) comp = 1;
     end
    
-    always @(posedge counter_clk) if (comp) comp <=0;
+    always @(posedge counter_clk)begin
+        if (comp) comp <=0;
+        in_x_d <= in_x;
+    end
 
 endmodule

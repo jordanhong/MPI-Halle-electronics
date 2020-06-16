@@ -35,16 +35,28 @@ module testbench ();
         load = 1;
 
         #(T_core/2) begin
-            reset = 0;
+            // reset tells the system that we wrote a new value, so reset all parameters and enable decoder
+            reset = 0; 
             load = 0;
         end
+
+        // enable testing doesn't make sense here as the clocks are not paused
+        // and thus mess up the syncing 
         //#(349*T_core) en = 0;
         //#(30*T_core/2)  en = 1;
-        #(749*T_core/2) begin
+        
+        #(1531*T_core/2) begin
             reset = 1;
             W = 13'd6401;
         end
         #(3*T_core/2) reset = 0;
+
+        #(1531*T_core/2) begin
+            reset = 1;
+            W = 13'd3000;
+        end
+        #(3*T_core/2) reset = 0;
+
 
         end
         
