@@ -1,6 +1,6 @@
 module decoder(
     input clk,
-    input reset,
+    input reset, // reset triggers the decode process using divider to get A and B from W
     input [12:0] W,
     output [6:0] A, B,
     output done
@@ -23,25 +23,6 @@ module decoder(
     // the counting down will only start when the division is done
     assign done = doneA && doneB;
 
-    // This is the "toggle" module
-    // At each clk rising edge, check if (load) and turn reset on
-    // If reset was set high last cycle, then toggle it to low.    
-    //always @(posedge clk)begin
-    //    if (load) begin
-    //        load <= 0;
-    //        reset <= 1;
-    //    end
-    //    else if (reset) reset<=0;
-    //end
-
-
-    //// Detect change in W and set load to high
-    //always @(W) load = 1;
-
-
-
-    // We want the reset/load to be detected at exactly one clock rising edge,
-    // then toggled back to loq          
     general_divider #(.WIDTH_A(13), .WIDTH_B(7)) dA (.clk(clk), .reset(reset),  .A(W),.B(modA),.Q(qA), .R(A), .done(doneA)); 
 
     general_divider #(.WIDTH_A(13), .WIDTH_B(7)) dB (.clk(clk), .reset(reset), .A(W),.B(modB),.Q(qB), .R(B), .done(doneB)); 

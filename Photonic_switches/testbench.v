@@ -1,14 +1,14 @@
 `timescale 1 ps / 1 fs
 module testbench ();
 
-    reg clkCore, en, reset;
+    reg clkCore, en, reset; 
     reg clkA, clkB;
     wire en_8MHz, en_1MHz;
     wire [4:0] c1, c2;
     
     reg [12:0] W = 13'd0002;
     wire [6:0] A_val, B_val;
-    wire En;
+    wire decoderDone;
     wire PWMreset, PWMset, signal, signal_b;
     wire latch;
     wire [6:0] cA, cB;
@@ -45,17 +45,37 @@ module testbench ();
         //#(349*T_core) en = 0;
         //#(30*T_core/2)  en = 1;
         
-        #(1531*T_core/2) begin
+        #(2531*T_core/2) begin
             reset = 1;
             W = 13'd6401;
         end
         #(3*T_core/2) reset = 0;
 
-        #(1531*T_core/2) begin
+        #(2531*T_core/2) begin
             reset = 1;
             W = 13'd3000;
         end
         #(3*T_core/2) reset = 0;
+
+        #(2531*T_core/2) begin
+            reset = 1;
+            W = 13'd1500;
+        end
+        #(3*T_core/2) reset = 0;
+
+        #(3000*T_core/2) begin
+            reset = 1;
+            W = 13'd1000;
+        end
+        #(3*T_core/2) reset = 0;
+
+        #(3000*T_core/2) begin
+            reset = 1;
+            W = 13'd500;
+        end
+        #(3*T_core/2) reset = 0;
+
+
 
 
         end
@@ -75,8 +95,7 @@ module testbench ();
                 .c1(c1), .c2(c2),
                 .en_8MHz(en_8MHz), .en_1MHz(en_1MHz),
                 .A_val(A_val), .B_val(B_val), 
-                .En(En),
-                .enS(enS), .enR(enR)
+                .decoderDone(decoderDone)
                 );
     
 

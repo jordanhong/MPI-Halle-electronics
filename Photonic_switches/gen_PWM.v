@@ -4,8 +4,7 @@ module gen_PWM(
     input [6:0] A_val, B_val,
     input reset,
     output PWMset, PWMreset, signal, signal_b,
-    output [6:0] cA, cB,
-    output enS, enR
+    output [6:0] cA, cB
 );
     
     // Instantiate counters, counter loads in A and B from reg at rising clkZ
@@ -18,7 +17,7 @@ module gen_PWM(
  
 
     // Instantiate RS flip flop
-    rsFF pwm_gen (.S(PWMset), .R(PWMreset), .out(signal), .out_b(signal_b) );
+    rsFF pwm_gen (.reset(reset), .S(PWMset), .R(PWMreset), .out(signal), .out_b(signal_b) );
 
 
 endmodule
