@@ -13,8 +13,8 @@ module gen_PWM(
 );
     
     // Instantiate counters, counter loads in A and B from reg at rising clkZ
-    downwardCounter #(7) counterA (.clk(clkA), .load(clkZ), .en(en), .limit(A_val), .Q(cA)); 
-    downwardCounter #(7) counterB (.clk(clkB), .load(clkZ), .en(en), .limit(B_val), .Q(cB)); 
+    downwardCounter #(7) counterA (.clk(clkA), .reset(reset), .load(clkZ), .en(en), .limit(A_val), .Q(cA)); 
+    downwardCounter #(7) counterB (.clk(clkB), .reset(reset), .load(clkZ), .en(en), .limit(B_val), .Q(cB)); 
     
     //Instantiate comparators
     comparator comparatorA (.counter_clk(clkA),.in_x (cA), .in_y (7'd0),.en(en), .reset(reset), .comp(PWMreset));
