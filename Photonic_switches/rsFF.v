@@ -7,6 +7,8 @@ module rsFF (
     // Normally having both S and R is illegal, since simultaneous falling
     // will trigger racing effect (metastable)
     // However, here S and R signals 
+
+
    // wire out_b; 
    rsLatch r0 (.en(1'b1),.reset(reset), .S(S), .R(R||reset), .Q(out), .Qb(out_b) );
 

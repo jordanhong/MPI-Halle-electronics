@@ -14,12 +14,12 @@ module testbench ();
     wire [6:0] cA, cB;
     reg load;   
 
-//  Parameters in ps
-    parameter T_core = 5000;                                 
     // Testing frequency for A(4MHz) and B(5MHz) 
     // parameter Ta = 250000;                                 
     // parameter Tb = 200000;
 
+    //  Parameters in ps
+    parameter T_core = 5000;                                 
     parameter Ta = 12500;
     parameter Tb = 12345.679;   
 
@@ -35,16 +35,12 @@ module testbench ();
         load = 1;
 
         #(T_core/2) begin
-            // reset tells the system that we wrote a new value, so reset all parameters and enable decoder
+            // reset tells the system that we wrote a new value, 
+            // so reset all parameters and enable decoder
             reset = 0; 
             load = 0;
         end
 
-        // enable testing doesn't make sense here as the clocks are not paused
-        // and thus mess up the syncing 
-        //#(349*T_core) en = 0;
-        //#(30*T_core/2)  en = 1;
-        
         #(2531*T_core/2) begin
             reset = 1;
             W = 13'd6401;
@@ -79,8 +75,8 @@ module testbench ();
 
 
         end
-        
-        
+       
+    // Configure clk signals to invert 
     always #(T_core/2) clkCore = ~clkCore;                                 
     always #(Ta/2) clkA = ~clkA;
     always #(Tb/2) clkB = ~clkB; 
