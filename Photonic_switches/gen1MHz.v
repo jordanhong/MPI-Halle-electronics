@@ -5,6 +5,7 @@ module gen1MHz(
     output en_1MHz,
     output [4:0] c2
 );
+    wire [4:0] c2_limit;
     assign c2_limit = 5'd7;
     assign en_1MHz = en && (c1==0) && (c2==0);
     

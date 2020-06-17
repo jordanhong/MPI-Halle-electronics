@@ -4,7 +4,7 @@ module gen8MHz(
     output [4:0] c1
 );
     // wire [4:0] c1;
-    // wire [4:0] c1_limit;
+    wire [4:0] c1_limit;
     assign c1_limit = 5'd24; 
     assign en_8MHz = (c1==0);
 
