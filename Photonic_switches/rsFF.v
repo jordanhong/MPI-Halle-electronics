@@ -10,7 +10,7 @@ module rsFF (
 
 
    // wire out_b; 
-   rsLatch r0 (.en(1'b1),.reset(reset), .S(S), .R(R||reset), .Q(out), .Qb(out_b) );
+   rsLatch r0 (.en(1'b1),.S(S), .R(R || reset), .Q(out), .Qb(out_b) );
 
 endmodule
         
