@@ -13,16 +13,16 @@ module gen_PWM(
 );
     
     // Instantiate counters, counter loads in A and B from reg at rising clkZ
-    downwardCounter #(7) counterA (.clk(clkA), .reset(reset), .load(clkZ), .en(en), .limit(A_val), .Q(cA)); 
-    downwardCounter #(7) counterB (.clk(clkB), .reset(reset), .load(clkZ), .en(en), .limit(B_val), .Q(cB)); 
+    downwardCounter #(7) counterA (.clk(clkA), .reset(1'b0), .load(clkZ), .en(en), .limit(A_val), .Q(cA)); 
+    downwardCounter #(7) counterB (.clk(clkB), .reset(1'b0), .load(clkZ), .en(en), .limit(B_val), .Q(cB)); 
     
     //Instantiate comparators
-    comparator comparatorA (.counter_clk(clkA),.in_x (cA), .in_y (7'd0),.en(en), .reset(reset), .comp(PWMreset));
-    comparator comparatorB (.counter_clk(clkB),.in_x (cB), .in_y (7'd0),.en(en), .reset(reset), .comp(PWMset));
+    comparator comparatorA (.counter_clk(clkA),.in_x (cA), .in_y (7'd0),.en(en), .reset(1'b0), .comp(PWMreset));
+    comparator comparatorB (.counter_clk(clkB),.in_x (cB), .in_y (7'd0),.en(en), .reset(1'b0), .comp(PWMset));
  
 
     // Instantiate RS flip flop
-    rsFF pwm_gen (.reset(reset), .S(PWMset), .R(PWMreset), .out(signal), .out_b(signal_b) );
+    rsFF pwm_gen (.reset(1'b0), .S(PWMset), .R(PWMreset), .out(signal), .out_b(signal_b) );
 
 
 endmodule

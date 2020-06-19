@@ -2,7 +2,7 @@ module downwardCounter #( parameter WIDTH = 1)
                     (
                         input clk,
                         input load,
-                        input reset,
+                        input reset, // pass in 0
                         input en,
                         input [WIDTH-1 :0] limit,
                         output reg [WIDTH-1 :0] Q
@@ -12,6 +12,7 @@ module downwardCounter #( parameter WIDTH = 1)
     always @(*) begin
         // If load signal is high, load in counter start value
         if (load) Q = limit;
+        // Edit: disable reset to prevent reset from interfering
         // else (load not high) but reset is triggered
         // forces Qto fall and stay at 0
         else if (reset) Q = 0;
