@@ -1,19 +1,17 @@
-module downwardCounter #( parameter WIDTH = 1)
+module upwardCounter #( parameter WIDTH = 1)
                     (
-                        input clk,
+                        input clk, 
                         input reset,
                         input en,
                         input [WIDTH-1 :0] limit,
                         output reg [WIDTH-1 :0] Q
                     );
 
-
-    initial Q = 0;
-
     always @(posedge clk)begin
-        
-        if (reset || (en && (Q==0)) ) Q<= limit;
-        else if (en) Q <= Q-1;
+    
+        if (reset || (en && (Q==limit)) ) Q<=0;
+        else if (en) Q<= Q+1;
+
     end
 
 endmodule

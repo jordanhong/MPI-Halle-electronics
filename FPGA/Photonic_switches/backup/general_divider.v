@@ -10,9 +10,7 @@ module general_divider #(
                         input [(WIDTH_B-1):0] B,
                         output [(WIDTH_A-1):0] Q, 
                         output [(WIDTH_B-1):0] R,
-                        output reg done,
-                        output reg [(2*WIDTH_A-1):0] ra
-
+                        output reg done
     );
 
   // ============== Algorithm  ==================== //
@@ -32,7 +30,7 @@ module general_divider #(
     parameter n = 2*WIDTH_A;
 
     // Declare storing reg for R-A concat
-    // reg [(n-1):0] ra;
+    reg [(n-1):0] ra;
     // declare counter
     reg [(WIDTH_A-1):0] c;
         
