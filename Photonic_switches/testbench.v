@@ -43,7 +43,7 @@ module testbench ();
 
         #(2531*T_core/2) begin
             reset = 1;
-            W = 13'd6401;
+            W = 13'd6479;
         end
         #(3*T_core/2) reset = 0;
 
@@ -55,7 +55,7 @@ module testbench ();
 
         #(2531*T_core/2) begin
             reset = 1;
-            W = 13'd1500;
+            W = 13'd0;
         end
         #(3*T_core/2) reset = 0;
 

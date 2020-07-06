@@ -7,8 +7,8 @@ module decoder(
 );
     // Module: 
     //      1) Reset (manually passed in) signals a change in W. 
-    //      2) If there is change in W, set load to high at rising clock edge
-    //      3) output load(reset), and done(enable for PWMgen)
+    //      2) If reset is high, the dividers start calculating A and B.
+    //      3) Outputs signal when decoding operation is complete.
 
     wire [12:0] qA, qB;     // wires for storing quotient from division (result not used)
     wire [6:0] modA, modB;  // specify divisor for A and B.

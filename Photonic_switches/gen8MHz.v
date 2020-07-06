@@ -1,8 +1,8 @@
 module gen8MHz(
-    input clk,  // 200 MHz core clock
-    input load, // load signal starts the 8 MHz signal generation 
-    input en, // enable pin
-    output en_8MHz, // output 8 MHz enable signal 
+    input clk,      // 200 MHz core clock
+    input load,     // Load signal to start the 8 MHz signal generation 
+    input en,       // Enable pin
+    output en_8MHz, // Output 8 MHz enable signal 
     output [4:0] c1 // Debugging signal to output counter value
 );
     

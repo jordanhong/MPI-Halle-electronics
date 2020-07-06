@@ -15,7 +15,7 @@ module comparator (
     always @(*)begin 
         if (reset) comp = 0;      
         // check if the input x changed in this clock cycle
-        // If inpux x was stable at 0, we have the counters waiting at 0
+        // If input x was stable at 0, we have the counters waiting at 0
         else if (en && (in_x == in_y) && !(in_x_d==in_x) ) comp = 1;
     end
 

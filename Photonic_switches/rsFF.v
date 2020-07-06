@@ -6,7 +6,8 @@ module rsFF (
 );
     // Normally having both S and R is illegal, since simultaneous falling
     // will trigger racing effect (metastable)
-    // However, here S and R signals 
+    // However, here S and R signals have different clock cycles and will
+    // never get pulled down simultaneously. 
 
 
    // wire out_b; 

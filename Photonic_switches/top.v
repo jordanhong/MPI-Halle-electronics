@@ -1,14 +1,25 @@
 module top(
-    input clk, reset, load, en, //system wide clk, reset, en, load(load counter values for 8MHz and 1 MHz)
-    input clkA, clkB, // clock A (80 MHz) and clock B (81 MHz)
-    input [12:0] W, // Input pulse width vector
-    output PWMreset, PWMset, signal, signal_b, //output signal for PWM (set, reset, signal, signal_b (for debugging, to be removed))
-    output [6:0] cA, cB, // counter values for counter A and counter B 
+    // Input Vectors
+    input clk, en,              // System-wide core clock (200 MHz) and enable
+    input load,                 // System-wide load 
+                                // (start counters for 8 MHz and 1 MHz pulse generation)
+    input clkA, clkB,           // Clock A (80 MHz) and clock B (81 MHz)
 
-    output [4:0] c1,c2, // counter values for enable at 8MHz and 1MHz (to be removed)
-    output en_8MHz, en_1MHz, //enable toggle at 8MHz and 1MHz
-    output [6:0] A_val, B_val, // Decoded A value and B value
-    output decoderDone // signal when decoder is done
+    input [12:0] W,             // Input pulse width vector
+    input reset,                // Reset for decoder (loading new pulse width W)
+
+    // Output Vectors
+    output PWMreset, PWMset,    // Signal set and reset signal 
+    output signal, signal_b,    // Output PWM pulse signal
+    
+    // Useful signals for debugging
+    output [6:0] cA, cB,        // counter values for counter A and counter B 
+    output en_8MHz, en_1MHz,    // Enable toggle at 8MHz and 1MHz
+    output [6:0] A_val, B_val,  // Decoded A value and B value
+
+    // Intermediate vectors to be removed
+    output decoderDone,          // signal when decoder is done
+    output [4:0] c1,c2         // counter values for enable at 8MHz and 1MHz (to be removed)
 );
 
 
