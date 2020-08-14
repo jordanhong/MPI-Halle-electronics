@@ -12,14 +12,18 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="50000000001fs"></ZoomEndTime>
-      <Cursor1Time time="7543698252fs"></Cursor1Time>
+      <ZoomEndTime time="18812233286fs"></ZoomEndTime>
+      <Cursor1Time time="19594594595fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="100"></NameColumnWidth>
+      <NameColumnWidth column_width="92"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="16" />
+   <wave_markers>
+      <marker label="" time="8987500000" />
+      <marker label="" time="7987654960" />
+   </wave_markers>
    <wvobject type="logic" fp_name="/testbench/clkCore">
       <obj_property name="ElementShortName">clkCore</obj_property>
       <obj_property name="ObjectShortName">clkCore</obj_property>
@@ -80,5 +84,9 @@
    <wvobject type="array" fp_name="/testbench/cB">
       <obj_property name="ElementShortName">cB[6:0]</obj_property>
       <obj_property name="ObjectShortName">cB[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/testbench/myTop/D0/done">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
    </wvobject>
 </wave_config>

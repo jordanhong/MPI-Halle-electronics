@@ -1,7 +1,7 @@
 module rsFF (
     input reset,
     input S, R,
-    output reg out
+    output out
 );
 
     // Use a pair of T flip flops
@@ -27,13 +27,13 @@ module rsFF (
 
     // Tff 1
     always @(posedge S, posedge reset)begin
-        if (reset)  {Qs,out} <= 0;
+        if (reset)  Qs <= 0;
         else        Qs <= Ds;
     end
 
     // Tff 2
     always @(posedge R, posedge reset) begin
-        if (reset)  {Qr,out} <= 0;
+        if (reset)  Qr <= 0;
         else        Qr <= Dr;
     end
 
