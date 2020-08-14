@@ -1,17 +1,42 @@
 module rsFF (
-    input reset, //asynchronous reset
+    input reset,
     input S, R,
-    output  out,
-    output out_b
+    output reg out
 );
-    // Normally having both S and R is illegal, since simultaneous falling
-    // will trigger racing effect (metastable)
-    // However, here S and R signals have different clock cycles and will
-    // never get pulled down simultaneously. 
+
+    // Use a pair of T flip flops
+    // T flip flop 1:   Controls the toggle of Qs, 
+    //                  enabled by ~out (only active when out = 0)
+    // T flip flop 2:   Controls the toggle of Qr, 
+    //                  enabled by out  (only active when out = 1)
+    //
+    // Output toggles on alternating R and S rising edge. 
+    // (Implemented by a XOR)
+    // Repeating S and R does not matter.
+    //
+
+    wire    Ds, Dr;
+    reg     Qs, Qr;
 
 
-   // wire out_b; 
-   rsLatch r0 (.en(1'b1),.S(S), .R(R || reset), .Q(out), .Qb(out_b) );
+    assign Ds = (~out)  ^ Qs;
+    assign Dr = (out)   ^ Qr;
+    assign out = Qs ^ Qr;
+
+
+
+    // Tff 1
+    always @(posedge S, posedge reset)begin
+        if (reset)  {Qs,out} <= 0;
+        else        Qs <= Ds;
+    end
+
+    // Tff 2
+    always @(posedge R, posedge reset) begin
+        if (reset)  {Qr,out} <= 0;
+        else        Qr <= Dr;
+    end
+
 
 endmodule
         
