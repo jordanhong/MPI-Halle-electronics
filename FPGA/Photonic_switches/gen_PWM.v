@@ -21,8 +21,8 @@ module gen_PWM(
     comparator comparatorB (.counter_clk(clkB),.in_x (cB), .in_y (7'd0),.en(en), .reset(1'b0), .comp(PWMset));
  
 
-    // Instantiate RS flip flop
-    rsFF pwm_gen (.reset(1'b0), .S(PWMset), .R(PWMreset), .out(signal), .out_b(signal_b) );
+    // Instantiate RS flip flop, resets when we load new W
+    rsFF pwm_gen (.reset(reset), .S(PWMset), .R(PWMreset), .out(signal));
 
 
 endmodule

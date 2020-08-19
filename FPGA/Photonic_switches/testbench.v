@@ -9,7 +9,7 @@ module testbench ();
     reg [12:0] W = 13'd0002;
     wire [6:0] A_val, B_val;
     wire decoderDone;
-    wire PWMreset, PWMset, signal, signal_b;
+    wire PWMreset, PWMset, signal;
     wire latch;
     wire [6:0] cA, cB;
     reg load;   
