@@ -10,7 +10,6 @@ module testbench ();
     wire [6:0] A_val, B_val;
     wire decoderDone;
     wire PWMreset, PWMset, signal;
-    wire latch;
     wire [6:0] cA, cB;
     reg load;   
 
@@ -23,7 +22,6 @@ module testbench ();
     parameter Ta = 12500;
     parameter Tb = 12345.679;   
 
-    assign latch = ~signal & ~signal_b; 
 
 
     initial begin
@@ -35,48 +33,48 @@ module testbench ();
         load = 1;
 
         #(T_core/2) begin
-            // reset tells the system that we wrote a new value, 
-            // so reset all parameters and enable decoder
+            // load tells the system that we wrote a new value, 
+            // so load all parameters and enable decoder
             reset = 0; 
             load = 0;
         end
 
         #(2531*T_core/2) begin
-            reset = 1;
+            load = 1;
             W = 13'd6479;
         end
-        #(3*T_core/2) reset = 0;
+        #(3*T_core/2) load = 0;
 
         #(4531*T_core/2) begin
-            reset = 1;
+            load = 1;
             W = 13'd3000;
         end
-        #(3*T_core/2) reset = 0;
+        #(3*T_core/2) load = 0;
 
         #(2531*T_core/2) begin
-            reset = 1;
+            load = 1;
             W = 13'd0;
         end
-        #(3*T_core/2) reset = 0;
+        #(3*T_core/2) load = 0;
 
         #(3000*T_core/2) begin
-            reset = 1;
+            load = 1;
             W = 13'd1000;
         end
-        #(3*T_core/2) reset = 0;
+        #(3*T_core/2) load = 0;
 
         #(3000*T_core/2) begin
-            reset = 1;
+            load = 1;
             W = 13'd500;
         end
-        #(3*T_core/2) reset = 0;
+        #(3*T_core/2) load = 0;
 
 
         #(3000*T_core/2) begin
-            reset = 1;
+            load = 1;
             W = 13'd6480;
         end
-        #(3*T_core/2) reset = 0;
+        #(3*T_core/2) load = 0;
 
 
 
@@ -91,7 +89,7 @@ module testbench ();
     top myTop ( .clk(clkCore), .reset(reset), .en(en), .load(load),
                 .clkA(clkA), .clkB(clkB),
                 .W(W),
-                .PWMreset(PWMreset), .PWMset(PWMset), .signal(signal), .signal_b(signal_b),
+                .PWMreset(PWMreset), .PWMset(PWMset), .signal(signal),
                 .cA(cA), .cB(cB),
 
                 .c1(c1), .c2(c2),

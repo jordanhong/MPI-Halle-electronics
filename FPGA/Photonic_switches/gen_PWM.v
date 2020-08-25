@@ -8,7 +8,7 @@ module gen_PWM(
     input [6:0] A_val, B_val,   // Decoded A and B values
 
     output PWMset, PWMreset,    // set and reset signal for PWM 
-    output signal, signal_b,    // signal and inverted signal (Debugging purpose)  from RS latch
+    output signal,              // signal and inverted signal (Debugging purpose)  from RS latch
     output [6:0] cA, cB         // Counter values for A and B (Debugging purpose)
 );
     
