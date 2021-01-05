@@ -1,0 +1,19 @@
+This is an example of arbiter which controls three systems:
+    1. RAM
+    2. Master system (referred as dma)
+    3. Custom logic 
+
+
+Setup:
+    - tb_arbiter.v: testbench
+    - arbiter.v: controlling arbiter.
+    - dut_RAM (instantiation of RAM_wrapper): main memory.
+    - custom logic:
+        - custom_read: reads in data from main memory, process it and store in FIFO
+        - custom_write: writes data into main memory.
+
+As an example, in tb_arbiter.v, the master system (dma) is simulated to write in concatenated pulse widths (4 pulse widths, each 2 bytes) from line 41 to line 44. Line 40 was some dummy data not used but still written. 
+
+After all data has been written into main memory, the custom_read modules then reads in each 128-vector and parse into pulse widths (16 bits) and store into the FIFO for future use. 
+
+When custom_read is done doing so, custom_write writes a dummy data into the memory after the previous content. More information in the individual module verilog files.

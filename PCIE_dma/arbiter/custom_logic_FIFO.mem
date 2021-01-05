@@ -1,0 +1,20 @@
+// memory data file (do not edit the following line - required for mem load use)
+// instance=/tb_arbiter/dut_logic/custom_logic_read/FIFO/Sync_FIFO/mem_data
+// format=mti addressradix=h dataradix=h version=1.0 wordsperline=2
+20: xxxx 0000
+1e: 0000 0000
+1c: 0000 0000
+1a: 0000 0000
+18: 0000 0000
+16: 0000 0000
+14: 0000 0000
+12: 0000 0000
+10: 0000 194f
+ e: 189c 1770
+ c: 157c 1388
+ a: 1194 0fa0
+ 8: 0dac 0bb8
+ 6: 09c4 07d0
+ 4: 05dc 03e8
+ 2: 012c 0064
+ 0: 0000 

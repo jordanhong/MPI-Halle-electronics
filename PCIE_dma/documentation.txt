@@ -1,0 +1,13 @@
+======================================================
+relevant_src_code/short/
+======================================================
+In this folder, I included the files that I found to be important when I changed some data. These files are copied from pcie_de_gen1_x4_ast64/testbench/pcie_de_gen1_x4_ast64_tb/simulation/submodules
+The original data pattern (code in relevant_src_code/long/) was too long and very hard to interpret. Hence I presented this short version.
+
+1. There are three description table transfers here, numbered 0, 1, and 2. The example demonstrated copying a set of data at three memory location on the root comples to the EP (in our case, the FPGA). However, in order for us to check that the data is transferred correctly, we have to fill in data patterns that we know and check later. 
+
+2. The above information is specified in the header section of the file altpcietb_bfm_driver_chaining.v, from line 145 onwards. I changed the length of the data pattern to be 48, 32, and, 16. The three descriptor table (WR_DESC0, WR_DESC1, WR_DESC2)transfers the data sequentially. So WR_DESC1 overwrites WR_DESC0, and WR_DESC2 overwrites WR_DESC1 and WR_DESC0. Having the last transfer WR_DESC2 the shortest (16) allows all level to be visible. 
+
+3. The top level module can be found under "main". 
+
+4. The downstream_loop function in altpcietb_bfm_driver_chaining.v (called on line 1667) continuously rewrites the EP memory (address 0-4). So that part is over-written in the testbench.
